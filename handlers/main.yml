@@ -1,0 +1,8 @@
+---
+# handlers file for apache
+ - name: service {{ pkg_name_debian }} started
+   service: name={{ pkg_name_debian }} state=started
+   when: ansible_os_family == "Debian"
+ - name: service {{ pkg_name_centos }} started
+   service: name={{ pkg_name_centos }} state=restarted
+   when: ansible_os_family == "RedHat"

@@ -1,0 +1,7 @@
+---
+# vars file for apache
+pkg_name_centos: httpd
+pkg_name_debian: apache2
+file: index.html
+location: /var/www/html
+text: hello Shams !!!

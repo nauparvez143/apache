@@ -1,0 +1,19 @@
+---
+# tasks file for apache
+ - name: install {{ pkg_name_debian }}
+   apt: name={{ pkg_name_debian }} state=present
+   when: ansible_os_family == "Debian"
+ - name: install {{ pkg_name_centos }}
+   yum: name={{ pkg_name_centos }} stats=present
+   when: ansible_os_family == "RedHat"
+ - name: update {{ file }}
+#   copy:
+#         content: "{{ text }}"
+#         src: index.html
+#         dest: "{{ location }}/{{ file }}"
+   template:
+         src: index.j2
+         dest: "{{ location }}/{{ file }}"
+   notify: 
+    - service {{ pkg_name_debian }} started
+    - service {{ pkg_name_centos }} started
